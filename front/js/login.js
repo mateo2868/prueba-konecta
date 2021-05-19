@@ -6,7 +6,7 @@ if( localStorage.getItem('access_token') ){
 }
 
 async function logSubmit(event) {
-    
+
     event.preventDefault();
     const mail = document.getElementById('mail').value;
     const password = document.getElementById('password').value;
@@ -19,19 +19,18 @@ async function logSubmit(event) {
             'Content-Type': 'application/json'
         }
     });
-    
-    const token = response.then(res=> {
+
+    response.then(res=> {
         if (res.status === 401) {
             alert('Error');
         } else {
-            console.log(res);
-            localStorage.setItem('access_token', res.json())
-            window.location.href = './views/page.html';
+            res.json().then(r => {
+                localStorage.setItem('access_token', r.access_token)
+                window.location.href = './views/page.html';
+            });
         }
     });
-               
-    
 }
-  
+
 const form = document.getElementById('form');
 form.addEventListener('submit', logSubmit);
