@@ -18,20 +18,20 @@ use App\Http\Controllers\AuthController;
 */
 
 
-$router->group(['prefix' => 'user'], function () use ($router) {
-    $router->get('', [UserController::class, 'index']);
-    $router->post('store', [UserController::class, 'store']);
-    // $router->edit('edit', 'UserController@edit');
-    // $router->update('', 'UserController@edit');
-
+Route::group(['middleware' => 'jwt.verify', 'prefix' => 'user'], function () use ($router) {
+    Route::get('', [UserController::class, 'index']);
+    Route::get('show', [UserController::class, 'show'])->name('show');
+    Route::get('edit/{id}', [UserController::class, 'edit']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('destroy/{id}', [UserController::class, 'destroy']);
+    Route::post('store', [UserController::class, 'store']);
 });
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::get('logout', [AuthController::class, 'logout']);
+    // Route::post('refresh', 'AuthController@refresh');
+    // Route::post('me', 'AuthController@me');
 });
 
 // Rutas login
