@@ -9,7 +9,6 @@ pasos para la instalación
 4. crea las llaves para jwt ``` php artisan key:generate ``` - ``` php artisan jwt:secret ```
 5. configura el archivo .env, puedes usar el archivo ``` .env.example ```
 6. crea la base de datos y importa el archivo ``` Dump20210519.sql ```
-7. El proyecto esta hecho con migraciones ``` php artisan migrate ```
 
 Nota: el proyecto usa migraciones pero el documento sql ya tiene un dato de prueba
 
