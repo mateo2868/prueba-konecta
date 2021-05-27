@@ -11,8 +11,8 @@ import { Users, UsersService } from 'src/app/services/users.service';
 export class FormUserComponent implements OnInit {
   userForm: FormGroup;
   rolesList = [
-    {txt: 'Vendedor', value: 2},
-    {txt: 'Cliente', value: 3}
+    { txt: 'Vendedor', value: 2 },
+    { txt: 'Cliente', value: 3 }
   ];
   verFormulario = false;
   @Input() editForm = false;
@@ -25,7 +25,7 @@ export class FormUserComponent implements OnInit {
       name: ['', Validators.required],
       password: ['', Validators.required],
       document: ['', Validators.required],
-      mail: ['', Validators.required, Validators.email],
+      mail: ['', [Validators.required, Validators.email]],
       direction: [''],
       rol: ['', Validators.required]
     });
@@ -35,22 +35,58 @@ export class FormUserComponent implements OnInit {
       if (res.rol !== 3) {
         this.verFormulario = true;
         if (res.rol === 1) {
-          this.rolesList.unshift({txt: 'Admin', value: 1})
+          this.rolesList.unshift({ txt: 'Admin', value: 1 })
+        }
+
+        if (this.editForm) {
+          this.userForm.patchValue({
+            name: this.editUser.name,
+            document: this.editUser.document,
+            mail: this.editUser.mail,
+            direction: this.editUser.direction,
+            rol: this.editUser.rol
+          })
+
+          console.log(this.userForm.value);
         }
       }
     });
   }
 
-  onSubmit() {
+  newUser() {
     this.userSrv.store(this.userForm.value).subscribe(async (res: any) => {
       const alert = await this.alertController.create({
         header: 'Alert',
         message: 'Listo, se guardó',
-        buttons: ['Cancel']
+        buttons: ['Aceptar']
       });
-  
+
       await alert.present();
     })
+  }
+
+  updateUser() {
+    this.userSrv.update(this.editUser.id, this.userForm.value).subscribe(async (res: any) => {
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: 'Listo, se actualizó',
+        buttons: ['Aceptar']
+      });
+
+      await alert.present();
+    })
+  }
+
+
+  onSubmit() {
+    // console.log(this.userForm.value);
+    // return;
+    if (this.editForm) {
+      this.updateUser();
+    } else {
+      this.newUser();
+    }
+
   }
 
 

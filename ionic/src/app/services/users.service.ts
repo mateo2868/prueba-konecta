@@ -11,7 +11,7 @@ export interface Users {
   rol: number
 }
 export interface ResAll {
-  users: Users[], 
+  users: Users[],
   rol: number
 }
 
@@ -22,11 +22,11 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  all(){
+  all() {
     return this.http.get<ResAll>(`${environment.url}/api/user`)
   }
 
-  destroy(id: number){
+  destroy(id: number) {
     return this.http.delete(`${environment.url}/api/user/destroy/${id}`);
   }
 
@@ -42,5 +42,7 @@ export class UsersService {
     return this.http.get<Users>(`${environment.url}/api/user/edit/${id}`);
   }
 
-  
+  update(id: number, user: Users) {
+    return this.http.put<any>(`${environment.url}/api/user/update/${id}`, user);
+  }
 }

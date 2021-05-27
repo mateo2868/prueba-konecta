@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
     <ion-title>edit-user</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  
+
   <app-form-user [editForm]="true" [editUser]="user"></app-form-user>
 </ion-content>

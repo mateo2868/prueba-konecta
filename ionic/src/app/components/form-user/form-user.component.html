@@ -8,7 +8,7 @@
     <ion-label position="floating">Contraseña  <ion-text color="danger">*</ion-text></ion-label>
     <ion-input required formControlName="password" type="password"></ion-input>
   </ion-item>
-  
+
   <ion-item>
     <ion-label position="floating">Documento <ion-text color="danger">*</ion-text></ion-label>
     <ion-input required formControlName="document" type="text"></ion-input>
@@ -18,16 +18,17 @@
     <ion-input required formControlName="mail" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Dirección<ion-text color="danger">*</ion-text></ion-label>
+    <ion-label position="floating">Dirección</ion-label>
     <ion-input required formControlName="direction" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Rol</ion-label>
+    <ion-label position="floating">Dirección<ion-text color="danger">*</ion-text></ion-label>
+
     <ion-select value="" multiple="false" placeholder="Select Pizza" formControlName="rol">
       <ion-select-option [value]="i.value" *ngFor="let i of rolesList">{{i.txt}}</ion-select-option>
     </ion-select>
   </ion-item>
-  
+
   <ion-button block color="primary" type="submit" [disabled]="userForm.invalid">
     Guardar
   </ion-button>

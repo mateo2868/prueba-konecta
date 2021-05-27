@@ -11,7 +11,7 @@ import { Users, UsersService } from '../services/users.service';
 })
 export class EditUserPage implements OnInit {
   user: Users;
-  constructor(private formBuilder: FormBuilder, private userSrv: UsersService, private route: ActivatedRoute) { }
+  constructor(private userSrv: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((res: any) => {
@@ -19,10 +19,6 @@ export class EditUserPage implements OnInit {
         this.user = user;
       })
     })
-
-
-
-    
   }
 
   onSubmit() {
