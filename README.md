@@ -16,3 +16,9 @@ Nota: el proyecto usa migraciones pero el documento sql ya tiene un dato de prue
 8. abre el archivo front/index.html en el navegador
 
 Nota: Si usaste el archivo con el dato de prueba el usuario es mateovasqueza@gmail.com - prueba
+
+// IONIC
+1. abre la carpeta ionic ``` cd ionic ```
+2. Instala las dependencias ``` npm i ```
+3. Ejecuta el proyecto ``` ionic serve ```
+
